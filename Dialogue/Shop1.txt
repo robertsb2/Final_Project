@@ -1,0 +1,17 @@
+Equipment:
+----------
+
+Health Potion               - Recovers 1/4 of max health. (15 gold)
+Hero's Journal              - Increase Strength by 1 (20 Gold)
+Strategist's Guidebook      - Increase Defense by 1 (20 Gold)
+
+Weapons:
+--------
+
+Short Sword                 - Attack Power: 1 (30 Gold)
+Long Sword                  - Attack Power: 2 (60 Gold)
+Broadsword                  - Attack Power: 3 (90 Gold)
+Mace                        - Attack Power: 4 (120 Gold)
+Battle Axe                  - Attack Power: 5 (150 Gold)
+
+

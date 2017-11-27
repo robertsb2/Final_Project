@@ -1,0 +1,8 @@
+Weapons:
+--------
+
+1: Short Sword    (30 Gold)
+2: Long Sword     (60 Gold)
+3: Broadsword     (90 Gold)
+4: Mace           (120 Gold)
+5: Battle Axe     (150 Gold)
