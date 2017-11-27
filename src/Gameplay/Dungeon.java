@@ -1,4 +1,5 @@
 package Gameplay;
+import Main.DungeonMaster;
 import Monsters.Monster;
 import Players.Players;
 import lib.ConsoleIO;
@@ -290,6 +291,7 @@ public class Dungeon {
         System.out.println();
         System.out.println();
         Monster.foundMonster(floor -1);
+        DungeonMaster.endGame();
     }
 
     // Handles player request to exit dungeon.

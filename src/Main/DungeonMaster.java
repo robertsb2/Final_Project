@@ -95,4 +95,13 @@ public class DungeonMaster {
         }
     }
 
+    public static void endGame() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("");
+        SetUp.delay(2000);
+        SetUp.reader("C:\\Bryan_Roberts_Final_Project\\Dialogue\\Win.txt");
+        scanner.nextLine();
+        System.out.println("Thanks For Playing!");
+        System.exit(0);
+    }
 }
