@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Random;
 
-public class SetUp {
+public class Utilities {
 
     // Resets saved variables and prints intro.
     public static void newGame() {
@@ -17,8 +17,8 @@ public class SetUp {
         Players.setName("",false);
         Players.setStrength(10);
         Players.setDefense(10);
-        Players.setMaxHealth(20);
-        Players.setCurHealth(20);
+        Players.setMaxHealth(30);
+        Players.setCurHealth(30);
         Players.setGold(10);
     }
 
@@ -138,9 +138,13 @@ public class SetUp {
     }
 
     // Variable bound Random Number Generator
-    public static int getRandom(int bound){
+    public static int getRandom(int n, int bound, int min){
         Random random = new Random();
-        return random.nextInt(bound);
+        int result = 0;
+        for (int i = 0; i < n ; i++) {
+            result += random.nextInt(bound)+ min;
+        }
+        return result;
     }
 }
 

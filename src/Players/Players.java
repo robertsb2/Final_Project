@@ -1,6 +1,6 @@
 package Players;
 
-import Gameplay.SetUp;
+import Gameplay.Utilities;
 import Weapons.Weapon;
 import lib.ConsoleIO;
 
@@ -64,11 +64,11 @@ public class Players {
     public static void heal(int amount){
         if  (maxHealth-curHealth >= amount) {
             System.out.println("You regained " + amount + " health");
-            SetUp.delay(1000);
+            Utilities.delay(1000);
             curHealth += amount;
         } else {
             System.out.println("You're at full health.");
-            SetUp.delay(1000);
+            Utilities.delay(1000);
             curHealth = maxHealth;
         }
     }
@@ -110,7 +110,7 @@ public class Players {
                 }
             } else {
                 System.out.println("Your pack is empty.");
-                SetUp.delay(1000);
+                Utilities.delay(1000);
                 return false;
             }
             choice = ConsoleIO.promptForInput("What do you want to use? (Type 'Cancel' to quit)", false);
@@ -160,12 +160,12 @@ public class Players {
         return pieces;
     }
     public static void findPiece(){
-        int i = SetUp.getRandom(2)+1;
+        int i = Utilities.getRandom(1,3,1);
         switch (i){
             case 1:
                 System.out.println("You found a Talisman Piece!");
                 if(pieces == 0){
-                    System.out.println("Find three of these Talisman pieces to gain a strength/defense point!");
+                    System.out.println("Find three of these Talisman pieces to gain a strength or defense point!");
                 }
                 pieces ++;
                 statUp();
@@ -187,12 +187,12 @@ public class Players {
                 case 1:
                     setStrength(1);
                     System.out.println("Strength increased by 1");
-                    SetUp.delay(1000);
+                    Utilities.delay(1000);
                     break;
                 case 2:
                     setDefense(1);
                     System.out.println("Defense increased by 1");
-                    SetUp.delay(1000);
+                    Utilities.delay(1000);
                     break;
             }
             System.out.println();

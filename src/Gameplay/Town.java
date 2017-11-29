@@ -16,7 +16,7 @@ public class Town {
             System.out.println("Durnwell");
             System.out.println("---------");
             System.out.println("");
-            SetUp.delay(500);
+            Utilities.delay(500);
             int choice = ConsoleIO.promptForMenuSelection(townOptions, false);
             switch (choice){
                 case 1:
@@ -29,7 +29,7 @@ public class Town {
                     inTown = false;
                     break;
                 case 4:
-                    SetUp.mainMenu();
+                    Utilities.mainMenu();
 
             }
         } while (inTown);
@@ -47,12 +47,12 @@ public class Town {
         int choice;
         System.out.println("");
         System.out.println("Welcome to my shop.");
-        SetUp.delay(500);
+        Utilities.delay(500);
         while (shopping){
             System.out.println("");
             System.out.println("See anything you like?");
             System.out.println("");
-            SetUp.reader(shopFile);
+            Utilities.reader(shopFile);
             System.out.println("Gold: " + Players.getGold());
             System.out.println("");
             switch (ConsoleIO.promptForMenuSelection(new String[]{"1: Buy Potions","2: Buy Journal","3: Buy Guidebook","4: Buy Weapons","5: Exit Shop"},false)){
@@ -64,7 +64,7 @@ public class Town {
                         Players.subtractGold(amount * potionCost);
                         Players.fillPack(amount);
                         System.out.println(amount + " potion(s) added to pack.");
-                        SetUp.delay(500);
+                        Utilities.delay(1000);
                     }
                     break;
                 case 2:
@@ -75,7 +75,7 @@ public class Town {
                         Players.subtractGold(amount * journalCost);
                         Players.setStrength(amount);
                         System.out.println("Your strength has increased by " + amount);
-                        SetUp.delay(1000);
+                        Utilities.delay(1000);
                     }
                     break;
                 case 3:
@@ -86,12 +86,12 @@ public class Town {
                         Players.subtractGold(amount*bookCost);
                         Players.setDefense(amount);
                         System.out.println("Your defense has increased by " + amount);
-                        SetUp.delay(1000);
+                        Utilities.delay(1000);
                     }
                     break;
                 case 4:
                     System.out.println("");
-                    SetUp.reader(shopFile2);
+                    Utilities.reader(shopFile2);
                     System.out.println("");
                     choice = ConsoleIO.promptForInt("Which one were you looking at?",1,Weapon.Weapons.values().length);
                     amount = Weapon.getCost(choice);
@@ -101,12 +101,13 @@ public class Town {
                         Players.subtractGold(amount);
                         Weapon.setWeapon(choice);
                         System.out.println("Weapon acquired: " + Weapon.getWeaponName());
-                        SetUp.delay(1000);
+                        Utilities.delay(1000);
                     }
                     break;
                 case 5:
                     shopping = false;
                     System.out.println("Thanks for stopping in!");
+                    Utilities.delay(1000);
                     break;
             }
         }
@@ -116,14 +117,14 @@ public class Town {
     private static void healer() {
         int diff =  Players.getMaxHealth() - Players.getCurHealth();
         System.out.println("Welcome!");
-        SetUp.delay(1000);
+        Utilities.delay(1000);
         if(diff != 0) {
             System.out.println("Let me heal your wounds...");
-            SetUp.delay(1500);
+            Utilities.delay(1500);
             Players.heal(diff);
         } else {
             System.out.println("Oh, you don't need any healing...   Come back later.");
-            SetUp.delay(500);
+            Utilities.delay(500);
         }
     }
 
@@ -132,7 +133,7 @@ public class Town {
         System.out.println("");
         System.out.println("You don't have enough money.");
         System.out.println("");
-        SetUp.delay(1000);
+        Utilities.delay(1000);
     }
 
 

@@ -35,7 +35,7 @@ public class Dungeon {
 
     // Entry point for dungeon methods.
     public static void start(){
-        SetUp.save("auto");
+        Utilities.save("auto");
         createFloor();
 
         System.out.println("");
@@ -44,7 +44,7 @@ public class Dungeon {
         System.out.println("Floor " + floor);
         System.out.println("---------");
         System.out.println("");
-        SetUp.delay(500);
+        Utilities.delay(500);
 
 
 
@@ -53,7 +53,7 @@ public class Dungeon {
         boolean inDungeon = true;
         do {
             if(floor == 10){
-                SetUp.save("auto");
+                Utilities.save("auto");
                 finalFloor();
             } else {
                 System.out.println("");
@@ -73,7 +73,7 @@ public class Dungeon {
                         inDungeon = false;
                         break;
                     case 5:
-                        SetUp.mainMenu();
+                        Utilities.mainMenu();
                         break;
                 }
             }
@@ -87,7 +87,7 @@ public class Dungeon {
         int i = 0;
         int j;
         do {
-            j = SetUp.getRandom(100) + 1;
+            j = Utilities.getRandom(1,100,1);
             if (j <= 22) {
                 i = 1; //Hallway 22% chance
             } else if (j <= 44) {
@@ -121,7 +121,7 @@ public class Dungeon {
             }
             System.out.println("-------");
             System.out.println("");
-            SetUp.delay(1000);
+            Utilities.delay(1000);
             encounter(room);
 
 
@@ -194,37 +194,37 @@ public class Dungeon {
     private static void encounter(Rooms room) {
         switch (room){
             case CAVERN:
-                Monster.foundMonster(SetUp.getRandom(floor));
+                Monster.foundMonster(Utilities.getRandom(1,floor,0));
                 break;
             case SHRINE:
                 if(ConsoleIO.promptForBool("Pray at the alter? (Yes/No)","Yes","No")) {
-                    int i = SetUp.getRandom(3)+1;
+                    int i = Utilities.getRandom(1,3,1);
                     if (i == 1) {
-                        SetUp.delay(2000);
+                        Utilities.delay(2000);
                         System.out.println("You max health has increased by 1");
                         Players.setMaxHealth(1);
-                        SetUp.delay(1000);
+                        Utilities.delay(1000);
                     } else if (i == 2) {
-                        SetUp.delay(2000);
+                        Utilities.delay(2000);
                         Players.heal(3);
                     } else {
-                        SetUp.delay(2000);
+                        Utilities.delay(2000);
                         System.out.println("Nothing happened...");
-                        SetUp.delay(1000);
+                        Utilities.delay(1000);
                     }
                 }
                 break;
             case HALLWAY:
-                if(SetUp.getRandom(2)+1 == 2){
+                if(Utilities.getRandom(1,2,1) == 2){
                     System.out.println("You found some gold!");
-                    SetUp.delay(1000);
+                    Utilities.delay(1000);
                     getReward();
                 } else {
-                    Monster.foundMonster(SetUp.getRandom(floor));
+                    Monster.foundMonster(Utilities.getRandom(1,floor,0));
                 }
                 break;
             case LIBRARY:
-                if (SetUp.getRandom(6) + 1 > 5){
+                if (Utilities.getRandom(1,6,1) > 5){
                     System.out.println("You found a hidden passageway! Choose a location");
                     int i = ConsoleIO.promptForMenuSelection(new String[]{"1: Stairs","2: Treasury","3: Shrine"},false) + 3;
                     System.out.println("");
@@ -236,7 +236,7 @@ public class Dungeon {
                     }
                     System.out.println("-------");
                     System.out.println("");
-                    SetUp.delay(1000);
+                    Utilities.delay(1000);
                     encounter(passage);
                 } else {
                     Players.findPiece();
@@ -265,29 +265,29 @@ public class Dungeon {
         } else {
             System.out.println("");
             System.out.println("You haven't found the stairs for this floor yet...");
-            SetUp.delay(1000);
+            Utilities.delay(1000);
         }
     }
 
     private static void createFloor() {
         floorCleared = false;
         roomsExplored = 0;
-        hallwayCount = SetUp.getRandom(4) + 3;
-        cavernCount = SetUp.getRandom(4) + 3;
-        libraryCount = SetUp.getRandom(4) + 1;
+        hallwayCount = Utilities.getRandom(1,4,3);
+        cavernCount = Utilities.getRandom(1,4,3);
+        libraryCount = Utilities.getRandom(1,4,1);
         stairsCount = 1;
-        treasuryCount = SetUp.getRandom(3);
-        shrineCount = SetUp.getRandom(2) + 1;
+        treasuryCount = Utilities.getRandom(1,3,0);
+        shrineCount = Utilities.getRandom(1,2,1);
         floorSize = hallwayCount + cavernCount + libraryCount + stairsCount + treasuryCount + shrineCount;
     }
 
     // Initiates Boss Battle when final floor is reached.
     private static void finalFloor() {
-        SetUp.delay(2000);
+        Utilities.delay(2000);
         System.out.println("You've done well to make it this far mortal...");
-        SetUp.delay(2000);
+        Utilities.delay(2000);
         System.out.println("but you will go no further.");
-        SetUp.delay(2000);
+        Utilities.delay(2000);
         System.out.println();
         System.out.println();
         Monster.foundMonster(floor -1);
@@ -302,6 +302,6 @@ public class Dungeon {
 
     // Gives random reward upon battle end or when treasure is found
     public static void getReward(){
-        Players.addGold(SetUp.getRandom(5) + floor +1);
+        Players.addGold(Utilities.getRandom(1,5,floor));
     }
 }

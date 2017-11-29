@@ -1,7 +1,7 @@
 package Main;
 
 import Gameplay.Dungeon;
-import Gameplay.SetUp;
+import Gameplay.Utilities;
 import Gameplay.Town;
 import Players.Players;
 import lib.ConsoleIO;
@@ -19,6 +19,49 @@ public class DungeonMaster {
     // Starts game, shows top menu screen, handles player decisions
     private static void start() {
         Scanner scanner = new Scanner(System.in);
+//        int test = 0;
+//        while (true) {
+//            if ((Utilities.getRandom(2, 10, 1) + 14) > (Utilities.getRandom(2, 10, 1) + 15)) {
+//                System.out.println("passed");
+//            } else {
+//                System.out.println("fail");
+//            }
+//            test++;
+//            if (test>=10) {
+//                System.exit(0);
+//                break;
+//            }
+//        }
+//        int pint;
+//        int ptot = 0;
+//        int monint;
+//        int montot = 0;
+//
+//        while (true){
+//            pint = (Monster.getDamage(14,12,1));
+//            monint = (Monster.getDamage(12,13,0));
+//            System.out.println("Player:");
+//            System.out.println(pint);
+//            System.out.println("Monster:");
+//            System.out.println(monint);
+//            System.out.println();
+//            System.out.println();
+//            ptot += pint;
+//            montot += monint;
+//            test ++;
+//            if(test>=3){
+//                System.out.println("Player total:");
+//                System.out.println(ptot);
+//                System.out.println("Monster total:");
+//                System.out.println(montot);
+//                System.exit(0);
+//                break;
+//            }
+//        }
+
+
+
+
         System.out.println("--------------");
         System.out.println("Dungeon Master");
         System.out.println("--------------");
@@ -33,11 +76,11 @@ public class DungeonMaster {
                     System.out.println("");
                     System.out.println("Are you sure? Any previous saved games will be lost. ");
                     if (ConsoleIO.promptForBool("(Yes/No)","Yes","No")) {
-                        SetUp.newGame();
+                        Utilities.newGame();
                         System.out.println("");
-                        SetUp.reader("C:\\Bryan_Roberts_Final_Project\\Dialogue\\Intro.txt");
+                        Utilities.reader("C:\\Bryan_Roberts_Final_Project\\Dialogue\\Intro.txt");
                         scanner.nextLine();
-                        SetUp.reader("C:\\Bryan_Roberts_Final_Project\\Dialogue\\Intro2.txt");
+                        Utilities.reader("C:\\Bryan_Roberts_Final_Project\\Dialogue\\Intro2.txt");
                         scanner.nextLine();
                         cont = false;
                         System.out.println("");
@@ -49,7 +92,7 @@ public class DungeonMaster {
                         break;
                     }
                 case 2:
-                    SetUp.loadGame();
+                    Utilities.loadGame();
                     cont = false;
                     game();
                     break;
@@ -86,7 +129,7 @@ public class DungeonMaster {
                     Dungeon.start();
                     break;
                 case 3:
-                    SetUp.mainMenu();
+                    Utilities.mainMenu();
                     break;
                 default:
                     System.out.println("Game error");
@@ -98,8 +141,8 @@ public class DungeonMaster {
     public static void endGame() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("");
-        SetUp.delay(2000);
-        SetUp.reader("C:\\Bryan_Roberts_Final_Project\\Dialogue\\Win.txt");
+        Utilities.delay(2000);
+        Utilities.reader("C:\\Bryan_Roberts_Final_Project\\Dialogue\\Win.txt");
         scanner.nextLine();
         System.out.println("Thanks For Playing!");
         System.exit(0);
