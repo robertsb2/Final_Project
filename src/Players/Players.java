@@ -67,7 +67,7 @@ public class Players {
             Utilities.delay(1000);
             curHealth += amount;
         } else {
-            System.out.println("You're at full health.");
+            System.out.println("You are at full health.");
             Utilities.delay(1000);
             curHealth = maxHealth;
         }
@@ -100,13 +100,22 @@ public class Players {
         }
     }
     public static boolean openPack() {
+        int potionCount = 0;
+        boolean hasPotion = false;
         String choice = null;
         try {
             if (pack.size() != 0) {
 
                 for (Object item : pack) {
-                    System.out.println(item.toString());
+                    if (item.equals("potion")){
+                        potionCount++;
+                        hasPotion = true;
+                    }
 
+                }
+
+                if (hasPotion){
+                    System.out.println("Potion (" + potionCount + ")");
                 }
             } else {
                 System.out.println("Your pack is empty.");

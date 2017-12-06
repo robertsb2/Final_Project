@@ -30,12 +30,13 @@ public class Dungeon {
     private static int shrineCount;
     private static int roomsExplored;
     private static int floorSize;
-    private static boolean foundStairs = false;
+    private static boolean foundStairs;
     private static boolean floorCleared = false;
 
     // Entry point for dungeon methods.
     public static void start(){
         Utilities.save("auto");
+        foundStairs = false;
         createFloor();
 
         System.out.println("");
@@ -104,11 +105,12 @@ public class Dungeon {
 
             if (availableRooms(i)){
                 valid = true;
-                roomsExplored++;
             }
+
             if(roomsExplored == floorSize){
                 floorCleared = true;
             }
+
         } while (!valid && !floorCleared);
         System.out.println("");
 
@@ -123,6 +125,8 @@ public class Dungeon {
             System.out.println("");
             Utilities.delay(1000);
             encounter(room);
+            roomsExplored++;
+            System.out.println(roomsExplored + " explored");
 
 
         } else {
@@ -148,7 +152,7 @@ public class Dungeon {
                     return true;
                 } else return false;
             case 4:
-                if (stairsCount >0){
+                if (stairsCount > 0){
                     stairsCount--;
                     return true;
                 } else return false;
@@ -194,7 +198,7 @@ public class Dungeon {
     private static void encounter(Rooms room) {
         switch (room){
             case CAVERN:
-                Monster.foundMonster(Utilities.getRandom(1,floor,0));
+                //Monster.foundMonster(Utilities.getRandom(1,floor,0));
                 break;
             case SHRINE:
                 if(ConsoleIO.promptForBool("Pray at the alter? (Yes/No)","Yes","No")) {
@@ -203,10 +207,11 @@ public class Dungeon {
                         Utilities.delay(2000);
                         System.out.println("You max health has increased by 1");
                         Players.setMaxHealth(1);
+                        Players.setCurHealth(1);
                         Utilities.delay(1000);
                     } else if (i == 2) {
                         Utilities.delay(2000);
-                        Players.heal(3);
+                        Players.heal(5);
                     } else {
                         Utilities.delay(2000);
                         System.out.println("Nothing happened...");
@@ -220,7 +225,8 @@ public class Dungeon {
                     Utilities.delay(1000);
                     getReward();
                 } else {
-                    Monster.foundMonster(Utilities.getRandom(1,floor,0));
+                  //  Monster.foundMonster(Utilities.getRandom(1,floor,0));
+                    System.out.println("hi");
                 }
                 break;
             case LIBRARY:
@@ -237,9 +243,10 @@ public class Dungeon {
                     System.out.println("-------");
                     System.out.println("");
                     Utilities.delay(1000);
-                    encounter(passage);
+                    //encounter(passage);
                 } else {
-                    Players.findPiece();
+                    //Players.findPiece();
+                    System.out.println();
                 }
                 break;
             case TREASURY:
@@ -279,6 +286,7 @@ public class Dungeon {
         treasuryCount = Utilities.getRandom(1,3,0);
         shrineCount = Utilities.getRandom(1,2,1);
         floorSize = hallwayCount + cavernCount + libraryCount + stairsCount + treasuryCount + shrineCount;
+        System.out.println(floorSize + " rooms");
     }
 
     // Initiates Boss Battle when final floor is reached.
