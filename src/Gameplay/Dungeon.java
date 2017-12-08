@@ -126,7 +126,7 @@ public class Dungeon {
             Utilities.delay(1000);
             encounter(room);
             roomsExplored++;
-            System.out.println(roomsExplored + " explored");
+
 
 
         } else {
@@ -198,7 +198,7 @@ public class Dungeon {
     private static void encounter(Rooms room) {
         switch (room){
             case CAVERN:
-                //Monster.foundMonster(Utilities.getRandom(1,floor,0));
+                Monster.foundMonster(Utilities.getRandom(1,floor,0));
                 break;
             case SHRINE:
                 if(ConsoleIO.promptForBool("Pray at the alter? (Yes/No)","Yes","No")) {
@@ -225,8 +225,7 @@ public class Dungeon {
                     Utilities.delay(1000);
                     getReward();
                 } else {
-                  //  Monster.foundMonster(Utilities.getRandom(1,floor,0));
-                    System.out.println("hi");
+                    Monster.foundMonster(Utilities.getRandom(1,floor,0));
                 }
                 break;
             case LIBRARY:
@@ -243,9 +242,9 @@ public class Dungeon {
                     System.out.println("-------");
                     System.out.println("");
                     Utilities.delay(1000);
-                    //encounter(passage);
+                    encounter(passage);
                 } else {
-                    //Players.findPiece();
+                    Players.findPiece();
                     System.out.println();
                 }
                 break;
@@ -286,7 +285,7 @@ public class Dungeon {
         treasuryCount = Utilities.getRandom(1,3,0);
         shrineCount = Utilities.getRandom(1,2,1);
         floorSize = hallwayCount + cavernCount + libraryCount + stairsCount + treasuryCount + shrineCount;
-        System.out.println(floorSize + " rooms");
+//        System.out.println(floorSize + " rooms");
     }
 
     // Initiates Boss Battle when final floor is reached.

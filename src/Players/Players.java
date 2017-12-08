@@ -15,7 +15,7 @@ public class Players {
     private static int gold = 0;
     private static int pieces = 0;
 
-    private static ArrayList pack = new ArrayList();
+    private static ArrayList<Object> pack = new ArrayList<>();
 
     // Name methods:
     public static void setName(String entry, boolean savedGame){
@@ -130,10 +130,13 @@ public class Players {
             if ( pack.contains(choice)){
                 useItem(choice);
                 return true;
-            } else if(choice.equalsIgnoreCase("cancel")) {
-                return false;
             } else {
-                System.out.println("you don't have any of those.");
+                assert choice != null;
+                if(choice.equalsIgnoreCase("cancel")) {
+                    return false;
+                } else {
+                    System.out.println("you don't have any of those.");
+                }
             }
         }catch (Exception e){
             System.out.println("pack item choice error");
